@@ -26,3 +26,12 @@ events:
       - deploy:
           script:
             - pipelines-deploy
+
+# add settings.php and sites/default/files
+-post-build:
+          type: script
+          script:
+            - 'chmod u+w docroot/sites/default/settings.php'
+            - 'if [ -e "scripts/settings.php" ]; then cp scripts/settings.php docroot/sites/default/settings.php; else cp docroot/sites/default/default.settings.php docroot/sites/default/settings.php; fi'
+            - 'mkdir docroot/sites/default/files'
+            - 'chmod u+w docroot/sites/default/settings.php'
