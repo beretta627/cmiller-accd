@@ -1,0 +1,28 @@
+version: 1.0.0
+
+events:
+  build:
+    steps:
+      - get-core:
+          type: script
+          script:
+            # Build non-development composer packages.
+            - composer install --no-interaction --no-dev --optimize-autoloader
+      # Deploy the build artifact to a Cloud on-demand environment.
+      - deploy:
+          script:
+            - pipelines-deploy
+
+  # When a GitHub pull request is merged, this deletes the coresponding ODE.
+  pr-merged:
+    steps:
+      - deploy:
+          script:
+            - pipelines-deploy
+
+  # When a GitHub pull request is closed, this deletes the coresponding ODE.
+  pr-closed:
+    steps:
+      - deploy:
+          script:
+            - pipelines-deploy
