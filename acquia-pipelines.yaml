@@ -8,6 +8,10 @@ events:
           script:
             # Build non-development composer packages.
             - composer install --no-interaction --no-dev --optimize-autoloader
+            - 'chmod u+w docroot/sites/default/settings.php'
+            - 'if [ -e "scripts/settings.php" ]; then cp scripts/settings.php docroot/sites/default/settings.php; else cp docroot/sites/default/default.settings.php docroot/sites/default/settings.php; fi'
+            - 'mkdir docroot/sites/default/files'
+            - 'chmod u+w docroot/sites/default/files'
       # Deploy the build artifact to a Cloud on-demand environment.
       - deploy:
           script:
@@ -31,7 +35,3 @@ events:
 -post-build:
           type: script
           script:
-            - 'chmod u+w docroot/sites/default/settings.php'
-            - 'if [ -e "scripts/settings.php" ]; then cp scripts/settings.php docroot/sites/default/settings.php; else cp docroot/sites/default/default.settings.php docroot/sites/default/settings.php; fi'
-            - 'mkdir docroot/sites/default/files'
-            - 'chmod u+w docroot/sites/default/settings.php'
