@@ -14,7 +14,7 @@ events:
             - pipelines-deploy
       - install:
           script:
-            - "drush8 si"
+            - "drush8 @PIPELINE_CLOUD_SITE.ode1 si"
 
   # When a GitHub pull request is merged, this deletes the coresponding ODE.
   pr-merged:
