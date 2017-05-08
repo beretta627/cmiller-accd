@@ -16,10 +16,10 @@ events:
           script:
             #- "drush8 @PIPELINE_CLOUD_SITE.ode1 si"
             - "drush8 sa"
-            - "echo PIPELINES_DEPLOYMENT_NAME"
-            - "echo PIPELINES_DEPLOYMENT_LINK"
-            - "echo PIPELINE_CLOUD_SITE"
-            - "echo PIPELINE_CLOUD_REALM"
+            - "echo $PIPELINES_DEPLOYMENT_NAME"
+            - "echo $PIPELINES_DEPLOYMENT_LINK"
+            - "echo $PIPELINE_CLOUD_SITE"
+            - "echo $PIPELINE_CLOUD_REALM"
 
   # When a GitHub pull request is merged, this deletes the coresponding ODE.
   pr-merged:
