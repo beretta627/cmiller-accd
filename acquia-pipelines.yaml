@@ -15,6 +15,7 @@ events:
       - install:
           script:
             #- "drush8 @PIPELINE_CLOUD_SITE.ode1 si"
+            - "drush8 acquia-update"
             - "drush8 sa"
             - "echo $PIPELINES_DEPLOYMENT_NAME"
             - "echo $PIPELINES_DEPLOYMENT_LINK"
